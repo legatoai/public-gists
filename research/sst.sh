@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-set -eo pipefail
+set -e
 sst() {
   if [[ -z "$1" ]]; then
     echo "Usage: sst <instance-name-substring>"

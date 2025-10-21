@@ -32,7 +32,7 @@ sst() {
 
   echo "Connecting to $FOUND_NAME ($IP_TO_USE)..."
 
-  echo "$(aws secretsmanager get-secret-value --secret-id research-machine-key --query SecretString --output text | base64 -d)" | ssh-add - && ssh -A -o StrictHostKeyChecking=no -t ubuntu@"$IP_TO_USE" "
+  ssh-add && echo "$(aws secretsmanager get-secret-value --secret-id research-machine-key --query SecretString --output text | base64 -d)" | ssh-add - && ssh -A -o StrictHostKeyChecking=no -t ubuntu@"$IP_TO_USE" "
     tmux has-session -t $INSTANCE_NAME 2>/dev/null
     if [ \$? != 0 ]; then
       tmux new-session -s $INSTANCE_NAME
